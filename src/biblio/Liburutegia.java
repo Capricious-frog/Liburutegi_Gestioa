@@ -10,11 +10,20 @@ public class Liburutegia {
     private int zenbatObra, azkenErregistroZenbakia;
 
     private Obra[] katalogoa;
-    private Liburutegia instantzia;
+    private static Liburutegia instantzia = null;
 
     private void Liburutegia(){}
 
-    public Liburutegia getInstance() {
+    /**
+     *
+     * @return Liburutegi motako instantzia
+     */
+    public static Liburutegia getInstance() {
+
+        if (instantzia == null){
+            instantzia = new Liburutegia();
+        }
+
         return instantzia;
     }
 
