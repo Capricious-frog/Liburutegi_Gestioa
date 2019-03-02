@@ -47,13 +47,15 @@ public class Liburutegia {
      * @param obra iburutegian rdenatuta sartzeko obra
      */
     private void txertatuOrdenean (Obra obra){
+        boolean txertatua = false;
 
-        for (int i = 0; i < zenbatObra; i++) {
+        for (int i = 0; i < zenbatObra && !txertatua; i++) {
             if (katalogoa[i].getErregistroZenbakia() < obra.getErregistroZenbakia()) {
+                txertatua = true;
                 zenbatObra++;
 
                 for(int j = i; j < zenbatObra; j++){
-                    katalogoa[i + 1] = katalogoa[i];
+                    katalogoa[i + 1] = katalogoa[i]; //TODO: Hau funtzio batean sartu
                 }
             }
         }
