@@ -1,0 +1,36 @@
+public void kargatuKatalogoaFitxategitik() { 
+
+	this.zenbatObra = 0;
+
+	System.out.println("Aleak kargatzen ari...");
+	try {
+		es = new Scanner(new FileReader (ALE_FITXATEGIAREN_IZENA));
+		String lerroa; 
+
+		this.azkenErregZenbakia = 0;
+
+		while  (es.hasNextLine()) { 
+
+			lerroa = es.nextLine();
+
+			String[] lerroOsagaiak = lerroa.split(" ");
+			// OSATU: gehitu obra berria dagozkion ezaugarriekin					
+			// Obra klasearen eraikitzaileari deitzeko, erabili 
+			// parametro hauek, dauden ordena berean:
+			// Integer.parseInt(lerroOsagaiak[1]), lerroOsagaiak[2], lerroOsagaiak[3], Boolean.parseBoolean(lerroOsagaiak[4])
+			//...
+
+
+		}
+		this.azkenErregZenbakia = this.katalogoa[this.zenbatObra-1].getErregZenbakia();
+			
+		System.out.println("...kargatu dira katalogoko aleak fitxategitik.");
+			
+	} catch (Exception e) {
+		System.out.println("...ezin izan dira aleak kargatu fitxategitik.");
+		System.out.println();
+		e.printStackTrace();
+	} finally {
+		es.close();
+	}
+}

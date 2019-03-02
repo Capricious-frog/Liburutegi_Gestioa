@@ -1,0 +1,30 @@
+public void maileguenTxostenaSortu () {
+	System.out.println("Maileguen txostena sortzen ari...");
+	
+	PrintWriter pw;
+	try {
+		pw = new PrintWriter(MAILEGUEN_TXOSTENA);
+		pw.println("------- Liburutegia: Maileguen zerrenda --------");
+		pw.println();
+
+		pw.printf("%-12s %-9s %-25s\n", 
+			"Erreg.-zenb.", 
+			"  Sign.  ", 
+			"        Izenburua        ");
+		pw.printf("%-12s %-9s %-25s\n\n", 
+				"------------", 
+				"---------", 
+				"-------------------------");
+			
+		//OSATU: ...		
+		
+
+		pw.close();
+		System.out.println("... sortu da maileguen txostena.");
+		System.out.println();
+	} catch (FileNotFoundException e) { //(IOException e) {
+		System.err.println("... ezin izan da maileguen txostena sortu.");
+		System.err.println();
+		e.printStackTrace();
+	} 
+}

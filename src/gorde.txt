@@ -1,0 +1,23 @@
+public void gorde() { 
+
+	System.out.println("Katalogoa gordetzen ari...");
+	FileWriter fw;
+	try {
+		fw = new FileWriter(ALE_FITXATEGIAREN_IZENA, false);
+
+		for (int i = 0; i < this.zenbatObra; i++) {
+			String lerroa = this.katalogoa[i].toString(); 
+			fw.write(lerroa); //+"\r\n");
+			fw.write("\r\n"); //UNIX edo Linuxen, "\n" nahikoa
+		}
+
+		fw.close();
+		System.out.println("... gorde dira aleak fitxategian.");
+		System.out.println();
+	} catch (IOException e) {
+		System.out.println("... ezin izan dira aleak gorde.");
+		System.out.println();
+		e.printStackTrace();
+	} 
+}
+
