@@ -32,24 +32,32 @@ public class Liburutegia {
         return instantzia;
     }
 
+
+    /**
+     *
+     * @return Azken erregistroaren hurrengoa
+     */
     public int getHurrengoErregZenbakia() {
         return azkenErregistroZenbakia + 1;
     }
 
-    private void txertatuOrdenean (Obra obra){
-        Obra lag;
 
-        /*
-         * i posizioko erregistro zenbakia i + 1 -ena baino handiagoa baldin bada
-         * posizioak aldatzen dira.
-         */
-        for (int i = 0; i < azkenErregistroZenbakia; i++) {
-            if (katalogoa[i].getErregistroZenbakia() > katalogoa[i + 1].getErregistroZenbakia()) {
-                lag = katalogoa[i];
-                katalogoa[i] = katalogoa[i + 1];
-                katalogoa[i + 1] = lag;
+    /**
+     *
+     * @param obra iburutegian rdenatuta sartzeko obra
+     */
+    private void txertatuOrdenean (Obra obra){
+
+        for (int i = 0; i < zenbatObra; i++) {
+            if (katalogoa[i].getErregistroZenbakia() < obra.getErregistroZenbakia()) {
+                zenbatObra++;
+
+                for(int j = i; j < zenbatObra; j++){
+                    katalogoa[i + 1] = katalogoa[i];
+                }
             }
         }
+
     }
 
     public void kargatuKatalogoaFitxategitik() {
