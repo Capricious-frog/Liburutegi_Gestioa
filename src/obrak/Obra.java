@@ -10,12 +10,13 @@ public class Obra {
 
 
     /**
-     * Constructor
+     * Eraikitzailea
      */
     public Obra() {}
 
 
     /**
+     * Eraikitzailea
      *
      * @param eZenb
      * @param sig
@@ -29,6 +30,7 @@ public class Obra {
 
 
     /**
+     * Eraikitzailea
      *
      * @param eZenb
      * @param sig
@@ -44,43 +46,40 @@ public class Obra {
 
 
     /**
-     *
-     * @return
+     * @return Erregistro zenbakia
      */
-    public int erregistroZenbakia() {
+    public int getErregistroZenbakia() {
         return erregistroZenbakia;
     }
 
 
     /**
-     *
-     * @return
+     * @return Sinadura
      */
-    public String signatura() {
+    public String getSignatura() {
         return signatura;
     }
 
 
     /**
-     *
-     * @return
+     * @return Izenburua
      */
-    public String izenburua() {
+    public String getIzenburua() {
         return izenburua;
     }
 
 
     /**
      *
-     * @return
+     * @return Maileguan dagoen edo ez
      */
-    public boolean maileguanDago() {
+    public boolean getMaileguanDago() {
         return maileguanDa;
     }
 
 
     /**
-     *
+     * Obra maileguan jartzen du
      */
     public void maileguanEman() {
         if (maileguanDa) {
@@ -92,7 +91,7 @@ public class Obra {
 
 
     /**
-     *
+     * Obra mailegutik kentzen du
      */
     public void maileguaKendu() {
         if (maileguanDa) {
@@ -104,7 +103,7 @@ public class Obra {
 
 
     /**
-     *
+     * Obraren informazioa inprimatzen du
      */
     public void inprimatu() {
         System.out.println("Erreg.-zenb.: " + erregistroZenbakia +
@@ -116,7 +115,7 @@ public class Obra {
 
     /**
      *
-     * @param pw
+     * @param pw Fitxategiaren PrintWriter -a
      */
     public void idatziFitxategian(PrintWriter pw){
         pw.println(erregistroZenbakia + " " + signatura + " " + izenburua + " " + maileguanDa);
@@ -126,9 +125,9 @@ public class Obra {
 
     /**
      *
-     * @return
+     * @return Obraren datuak bueltatzen ditu string batean.
      */
     public String toString(){
-        return "";
+        return erregistroZenbakia + " " + signatura + " " + izenburua.replace(" ", "_") + " " + maileguanDa;
     }
 }
