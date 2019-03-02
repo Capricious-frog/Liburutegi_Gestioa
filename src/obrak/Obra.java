@@ -18,9 +18,9 @@ public class Obra {
     /**
      * Eraikitzailea
      *
-     * @param eZenb
-     * @param sig
-     * @param izenb
+     * @param eZenb erregistro zenbakia
+     * @param sig signatura
+     * @param izenb izenburua
      */
     public Obra(int eZenb, String sig, String izenb) {
         erregistroZenbakia = eZenb;
@@ -32,10 +32,10 @@ public class Obra {
     /**
      * Eraikitzailea
      *
-     * @param eZenb
-     * @param sig
-     * @param izenb
-     * @param mai
+     * @param eZenb erregistro zenbakia
+     * @param sig signatura
+     * @param izenb izenburua
+     * @param mai mailegua
      */
     public Obra(int eZenb, String sig, String izenb, boolean mai) {
         erregistroZenbakia = eZenb;
@@ -118,7 +118,7 @@ public class Obra {
      * @param pw Fitxategiaren PrintWriter -a
      */
     public void idatziFitxategian(PrintWriter pw){
-        pw.println(erregistroZenbakia + " " + signatura + " " + izenburua + " " + maileguanDa);
+        pw.write(erregistroZenbakia + " " + signatura + " " + izenburua + " " + maileguanDa);
         pw.close();
     }
 
