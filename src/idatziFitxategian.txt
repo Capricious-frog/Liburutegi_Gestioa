@@ -1,6 +1,0 @@
-public void idatziFitxategian (PrintWriter pw) {
-	pw.printf("%-12d %-9s %-25s",
-		this.getErregZenbakia(), 
-		this.getSignatura(),
-		this.getIzenburua());
-}
