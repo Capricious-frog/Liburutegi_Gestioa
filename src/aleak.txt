@@ -1,9 +1,0 @@
-OBRA 6 EH-002 Elhuyar_Hiztegia false
-OBRA 2 EH-001 Elhuyar_Hiztegia false
-OBRA 4 FREU-001 Frantses-euskara false
-OBRA 10 DON2019-001 Donostia_2019 false
-OBRA 5 ASAD-001 izenburua true
-OBRA 7 HARL-001 Harluxet false
-OBRA 1 PTx-001 Printze_Txikia true
-OBRA 8 CD-001 izenburua false
-OBRA 3 MB-001 Musikaz_blai true
