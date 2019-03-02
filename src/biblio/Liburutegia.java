@@ -2,9 +2,7 @@ package biblio;
 
 import obrak.Obra;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.Scanner;
 
 public class Liburutegia {
@@ -17,7 +15,11 @@ public class Liburutegia {
     private Obra[] katalogoa = new Obra[OBRA_KOP_MAX];
     private static Liburutegia instantzia = null;
 
+    /**
+     * Eraikitzailea
+     */
     private Liburutegia(){}
+
 
     /**
      *
@@ -34,6 +36,7 @@ public class Liburutegia {
 
 
     /**
+     * Azken erregistro zenbakiari bat gehitu eta balio berriaitzultzen du.
      *
      * @return Azken erregistroaren hurrengoa
      */
@@ -62,6 +65,10 @@ public class Liburutegia {
 
     }
 
+
+    /**
+     * Obrak kargatzen ditu aleak.txt fitxategitik eta ordenan gordeko ditu bere erregistro zenbakiaren arabera
+     */
     public void kargatuKatalogoaFitxategitik() {
         String[] lag;
         zenbatObra = 0;
@@ -83,6 +90,14 @@ public class Liburutegia {
         }
     }
 
+
+    /**
+     * Emandako erregistro zenbakia duen obra itzultzen du. Emandakoerregistro zenbakia duen obrarik ez badago,
+     * errore-mezua idatzi irteera estandarretik etaitzuli obra “hutsa” emaitzatzat
+     *
+     * @param erregZenb Erregistro zenbakia
+     * @return Obra erregistro zenbaki hori duena
+     */
     public Obra erregZenbDuenAlea(int erregZenb) {
         boolean aurkitua = false;
         int pos = 0;
@@ -97,23 +112,52 @@ public class Liburutegia {
         return aurkitua ? katalogoa[pos] : new Obra();
     }
 
+
+    /**
+     * Obra bat emanik, katalogoan gehitzen du
+     *
+     * @param obra Gehitzeko obra
+     */
     public void gehituObra (Obra obra) {
         katalogoa[zenbatObra] = obra;
         zenbatObra++;
     }
 
+
+    /**
+     * Erregistro zenbaki bat emanik, katalogotik kentzen du erregistro zenbakihori duen obra.
+     * Katalogoan ez badago erregistro zenbaki hori duen obrarik errore-mezuaidatzi irteera estandarretik.
+     *
+     * @param erregZenb Erregistro zenbakia
+     */
     public void kenduObra (int erregZenb) {
-        zenbatObra--;
+        zenbatObra--; //TODO: esto no es lo que pide
     }
 
+    /**
+     * Erregistro zenbakia emanik, erregistro zenbaki hori duen obramaileguan egotera pasako da.
+     * Obra dagoeneko maileguan badago, mezu egokia idatziko dapantailan eta ez da mailegua egingo.
+     *
+     * @param erregZenb
+     */
     public void mailegatuObra(int erregZenb) {
         erregZenbDuenAlea(erregZenb).maileguanEman();
     }
 
+
+    /**
+     * Erregistro zenbakia emanik, erregistro zenbaki hori duen obra itzuli dutelaadieraziko du (dagoeneko ez dago maileguan).
+     * Obra maileguan ez badago, mezu egokiaidatziko da pantailan.
+     *
+     * @param erregZenb
+     */
     public void itzuliObra(int erregZenb) {
         erregZenbDuenAlea(erregZenb).maileguaKendu();
     }
 
+    /**
+     * Katalogoko obrak bistaratzen ditu pantailan, Obra klasekoinprimatu metodoaz baliatuz
+     */
     public void katalogoaBistaratu() {
         System.out.println("====================== KATALOGOA ========================");
 
@@ -124,6 +168,10 @@ public class Liburutegia {
         System.out.println("=========================================================");
     }
 
+
+    /**
+     *
+     */
     public void maileguenTxostenaSortu () {
         System.out.println("Maileguen txostena sortzen ari...");
 
@@ -156,7 +204,39 @@ public class Liburutegia {
     }
 
 
+    /**
+     * Katalogoko obra kopurua itzultzen du.
+     *
+     * @return Obra kopurua
+     */
+    public int getZenbatObra() {
+        return zenbatObra;
+    }
+
+    /**
+     * aleak.txt fitxategian iraultzen du katalogoa.
+     */
     public void gorde() {
 
+        System.out.println("Katalogoa gordetzen ari...");
+        FileWriter fw;
+        try {
+            fw = new FileWriter(ALE_FITXATEGIEN_IZENA, false);
+
+            for (int i = 0; i < this.zenbatObra; i++) {
+                String lerroa = this.katalogoa[i].toString();
+                fw.write(lerroa); //+"\r\n");
+                fw.write("\r\n"); //UNIX edo Linuxen, "\n" nahikoa
+            }
+
+            fw.close();
+            System.out.println("... gorde dira aleak fitxategian.");
+            System.out.println();
+        } catch (IOException e) {
+            System.out.println("... ezin izan dira aleak gorde.");
+            System.out.println();
+            e.printStackTrace();
+        }
     }
+
 }
