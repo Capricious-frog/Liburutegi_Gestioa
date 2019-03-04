@@ -90,7 +90,7 @@ public class Liburutegia {
                 txertatuOrdenean(new Obra(Integer.parseInt(lerroOsagaiak[1]), lerroOsagaiak[2], lerroOsagaiak[3], Boolean.parseBoolean(lerroOsagaiak[4])));
             }
 
-            azkenErregistroZenbakia = katalogoa[zenbatObra - 1].getErregistroZenbakia(); //TODO: Esto peta
+            azkenErregistroZenbakia = katalogoa[zenbatObra - 1].getErregistroZenbakia(); //TODO: Esto peta.
 
             System.out.println("...kargatu dira katalogoko aleak fitxategitik.");
 
