@@ -118,7 +118,7 @@ public class Obra {
      * @param pw Fitxategiaren PrintWriter -a
      */
     public void idatziFitxategian(PrintWriter pw){
-        pw.write(erregistroZenbakia + " " + signatura + " " + izenburua + " " + maileguanDa);
+        pw.write("OBRA" + erregistroZenbakia + " " + signatura + " " + izenburua + " " + maileguanDa);
         pw.close();
     }
 
