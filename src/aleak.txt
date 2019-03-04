@@ -7,4 +7,3 @@ OBRA 7 HARL-001 Harluxet false
 OBRA 1 PTx-001 Printze_Txikia true
 OBRA 8 CD-001 izenburua false
 OBRA 3 MB-001 Musikaz_blai true
-ignorar
