@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Liburutegia {
     private final int  OBRA_KOP_MAX = 50;
-    private final String ALE_FITXATEGIEN_IZENA = "aleak.txt";
+    private final String ALE_FITXATEGIEN_IZENA = "/home/julen/IdeaProjects/Liburutegi_Gestioa/src/aleak.txt";
     private final String MAILEGUEN_TXOSTENA = "maileguak.txt";
 
     private int zenbatObra, azkenErregistroZenbakia;
@@ -19,6 +19,7 @@ public class Liburutegia {
      * Eraikitzailea
      */
     private Liburutegia(){}
+
 
 
     /**
@@ -70,25 +71,36 @@ public class Liburutegia {
      * Obrak kargatzen ditu aleak.txt fitxategitik eta ordenan gordeko ditu bere erregistro zenbakiaren arabera
      */
     public void kargatuKatalogoaFitxategitik() {
-        String[] lag;
+
         zenbatObra = 0;
 
-        try {
-            Scanner scanner = new Scanner(new FileReader(ALE_FITXATEGIEN_IZENA));
+        System.out.println("Aleak kargatzen ari...");
 
-            for (int i = 0; scanner.hasNextLine(); i++) {
-                lag = scanner.nextLine().split(" ");
-                katalogoa[i] = new Obra(Integer.valueOf(lag[0]), lag[1], lag[2], Boolean.valueOf(lag[3]));
-                zenbatObra++;
-                azkenErregistroZenbakia = katalogoa[i].getErregistroZenbakia();
+        try (Scanner scanner = new Scanner(new FileReader(ALE_FITXATEGIEN_IZENA))) {
+            String lerroa;
+
+            this.azkenErregistroZenbakia = 0;
+
+            while (scanner.hasNextLine()) {
+
+                lerroa = scanner.nextLine();
+
+                String[] lerroOsagaiak = lerroa.split(" ");
+
+                txertatuOrdenean(new Obra(Integer.parseInt(lerroOsagaiak[1]), lerroOsagaiak[2], lerroOsagaiak[3], Boolean.parseBoolean(lerroOsagaiak[4])));
             }
 
-            scanner.close();
+            azkenErregistroZenbakia = katalogoa[zenbatObra - 1].getErregistroZenbakia(); //TODO: Esto peta
 
-        } catch (FileNotFoundException e) {
+            System.out.println("...kargatu dira katalogoko aleak fitxategitik.");
+
+        } catch (Exception e) {
+            System.out.println("...ezin izan dira aleak kargatu fitxategitik.");
+            System.out.println();
             e.printStackTrace();
         }
     }
+
 
 
     /**
