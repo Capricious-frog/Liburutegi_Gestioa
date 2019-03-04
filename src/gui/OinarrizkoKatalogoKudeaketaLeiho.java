@@ -116,12 +116,12 @@ public class OinarrizkoKatalogoKudeaketaLeiho extends JDialog {
 						"Erregistro-zenbakia?", 
 						JOptionPane.QUESTION_MESSAGE);
 				Liburutegia lib = Liburutegia.getInstance();
-				Obra a;
+				Obra obra;
 				//				try {
 				if (erregZenbakia != null ) { //ez du Cancel sakatu
-					a = lib.erregZenbDuenAlea(Integer.parseInt(erregZenbakia));
-					if (a.getErregZenbakia() != 0) { //alea existitzen bada...
-						if (a.maileguanDago()==true) { //maileguan badago, baieztarazi ezabatu nahia
+					obra = lib.erregZenbDuenAlea(Integer.parseInt(erregZenbakia));
+					if (obra.getErregistroZenbakia() != 0) { //alea existitzen bada...
+						if (obra.getMaileguanDago()==true) { //maileguan badago, baieztarazi ezabatu nahia
 							erantzuna = JOptionPane.showConfirmDialog(
 									null, 
 									"Ale hori maileguan dago: aurrera egin nahi duzu?",
