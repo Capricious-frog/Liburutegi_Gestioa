@@ -1,7 +1,6 @@
 package biblio;
 
 import javax.swing.JFrame;
-
 import gui.LeihoNagusi;
 
 public class Nagusia {

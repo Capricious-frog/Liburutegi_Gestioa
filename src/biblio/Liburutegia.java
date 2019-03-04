@@ -1,14 +1,13 @@
 package biblio;
 
 import obrak.Obra;
-
 import java.io.*;
 import java.util.Scanner;
 
 public class Liburutegia {
     private final int  OBRA_KOP_MAX = 50;
-    private final String ALE_FITXATEGIEN_IZENA = "/home/julen/IdeaProjects/Liburutegi_Gestioa/src/aleak.txt";
-    private final String MAILEGUEN_TXOSTENA = "maileguak.txt";
+    private final String ALE_FITXATEGIEN_IZENA = "./src/aleak.txt";
+    private final String MAILEGUEN_TXOSTENA = "./src/maileguak.txt";
 
     private int zenbatObra, azkenErregistroZenbakia;
 
