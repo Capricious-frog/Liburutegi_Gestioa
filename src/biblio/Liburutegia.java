@@ -1,11 +1,12 @@
 package biblio;
 
 import obrak.Obra;
+
 import java.io.*;
 import java.util.Scanner;
 
 public class Liburutegia {
-    private final int  OBRA_KOP_MAX = 50;
+    private final int OBRA_KOP_MAX = 50;
     private final String ALE_FITXATEGIEN_IZENA = "./src/aleak.txt";
     private final String MAILEGUEN_TXOSTENA = "./src/maileguak.txt";
 
@@ -15,19 +16,17 @@ public class Liburutegia {
     private static Liburutegia instantzia = null;
 
     /**
-     * Eraikitzailea
+     * Defektuzko eraikitzailea
      */
-    private Liburutegia(){}
-
+    private Liburutegia() {}
 
 
     /**
-     *
      * @return Liburutegi motako instantzia
      */
     public static Liburutegia getInstance() {
 
-        if (instantzia == null){
+        if (instantzia == null) {
             instantzia = new Liburutegia();
         }
 
@@ -46,10 +45,9 @@ public class Liburutegia {
 
 
     /**
-     *
      * @param obra iburutegian rdenatuta sartzeko obra
      */
-    private void txertatuOrdenean (Obra obra){
+    private void txertatuOrdenean(Obra obra) {
         boolean txertatua = false;
 
         for (int i = 0; i < zenbatObra && !txertatua; i++) {
@@ -77,15 +75,12 @@ public class Liburutegia {
 
         try (Scanner scanner = new Scanner(new FileReader(ALE_FITXATEGIEN_IZENA))) {
             String lerroa;
-
             azkenErregistroZenbakia = 0;
 
             while (scanner.hasNextLine()) {
 
                 lerroa = scanner.nextLine();
-
                 String[] lerroOsagaiak = lerroa.split(" ");
-
                 txertatuOrdenean(new Obra(Integer.parseInt(lerroOsagaiak[1]), lerroOsagaiak[2], lerroOsagaiak[3], Boolean.parseBoolean(lerroOsagaiak[4])));
             }
 
@@ -101,7 +96,6 @@ public class Liburutegia {
     }
 
 
-
     /**
      * Emandako erregistro zenbakia duen obra itzultzen du. Emandakoerregistro zenbakia duen obrarik ez badago,
      * errore-mezua idatzi irteera estandarretik etaitzuli obra “hutsa” emaitzatzat
@@ -114,7 +108,7 @@ public class Liburutegia {
         int pos = 0;
 
         for (int i = 0; i < zenbatObra && !aurkitua; i++) {
-            if (katalogoa[i].getErregistroZenbakia() == erregZenb ) {
+            if (katalogoa[i].getErregistroZenbakia() == erregZenb) {
                 aurkitua = true;
                 pos = i;
             }
@@ -129,7 +123,7 @@ public class Liburutegia {
      *
      * @param obra Gehitzeko obra
      */
-    public void gehituObra (Obra obra) {
+    public void gehituObra(Obra obra) {
         katalogoa[zenbatObra] = obra;
         zenbatObra++;
     }
@@ -141,13 +135,14 @@ public class Liburutegia {
      *
      * @param erregZenb Erregistro zenbakia
      */
-    public void kenduObra (int erregZenb) {
+    public void kenduObra(int erregZenb) {
         boolean aurkitua = false;
 
         for (int i = 0; i < zenbatObra && !aurkitua; i++) {
             if (katalogoa[i].getErregistroZenbakia() == erregZenb) {
                 aurkitua = true;
 
+                // Array-aren kopia egiten du i-garren elementua gabe
                 if (zenbatObra - i >= 0) {
                     System.arraycopy(katalogoa, i + 1, katalogoa, i, zenbatObra - i);
                 }
@@ -196,8 +191,8 @@ public class Liburutegia {
      * maileguak.txt fitxategian maileguan dauden katalogoko obren informazioa idazten du,
      * Obra klaseko idatziFitxategian metodoaz baliatuz.
      */
-    public void maileguenTxostenaSortu () {
-        System.out.println("Maileguen txostena sortzen ari...");
+    public void maileguenTxostenaSortu() {
+        System.out.println("Maileguen txostena sortzen...");
 
         PrintWriter pw;
         try {
@@ -215,14 +210,17 @@ public class Liburutegia {
                     "---------",
                     "-------------------------");
 
-            //OSATU: ...
-
+            for (int i = 0; i < zenbatObra; i++) {
+                if (katalogoa[i].getMaileguanDago()) {
+                    pw.printf("%-12s %-9s %-25s\n", katalogoa[i].getErregistroZenbakia(), katalogoa[i].getSignatura(), katalogoa[i].getIzenburua());
+                }
+            }
 
             pw.close();
-            System.out.println("... sortu da maileguen txostena.");
+            System.out.println("Maileguen txostena sortua izan da.");
             System.out.println();
         } catch (FileNotFoundException e) { //(IOException e) {
-            System.err.println("... ezin izan da maileguen txostena sortu.");
+            System.err.println("Ezin izan da maileguen txostena sortu.");
             System.err.println();
             e.printStackTrace();
         }
@@ -243,7 +241,7 @@ public class Liburutegia {
      */
     public void gorde() {
 
-        System.out.println("Katalogoa gordetzen ari...");
+        System.out.println("Katalogoa gordetzen...");
         FileWriter fw;
         try {
             fw = new FileWriter(ALE_FITXATEGIEN_IZENA, false);
@@ -255,10 +253,10 @@ public class Liburutegia {
             }
 
             fw.close();
-            System.out.println("... gorde dira aleak fitxategian.");
+            System.out.println("Aleak fitxategian gorde dira.");
             System.out.println();
         } catch (IOException e) {
-            System.out.println("... ezin izan dira aleak gorde.");
+            System.out.println("Aleak ezin izan dira gorde.");
             System.out.println();
             e.printStackTrace();
         }
