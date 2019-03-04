@@ -78,7 +78,7 @@ public class Liburutegia {
         try (Scanner scanner = new Scanner(new FileReader(ALE_FITXATEGIEN_IZENA))) {
             String lerroa;
 
-            this.azkenErregistroZenbakia = 0;
+            azkenErregistroZenbakia = 0;
 
             while (scanner.hasNextLine()) {
 
@@ -142,7 +142,19 @@ public class Liburutegia {
      * @param erregZenb Erregistro zenbakia
      */
     public void kenduObra (int erregZenb) {
-        zenbatObra--; //TODO: esto no es lo que pide
+        boolean aurkitua = false;
+
+        for (int i = 0; i < zenbatObra && !aurkitua; i++) {
+            if (katalogoa[i].getErregistroZenbakia() == erregZenb) {
+                aurkitua = true;
+
+                if (zenbatObra - i >= 0) {
+                    System.arraycopy(katalogoa, i + 1, katalogoa, i, zenbatObra - i);
+                }
+                zenbatObra--;
+            }
+        }
+
     }
 
     /**
@@ -181,7 +193,8 @@ public class Liburutegia {
 
 
     /**
-     *
+     * maileguak.txt fitxategian maileguan dauden katalogoko obren informazioa idazten du,
+     * Obra klaseko idatziFitxategian metodoaz baliatuz.
      */
     public void maileguenTxostenaSortu () {
         System.out.println("Maileguen txostena sortzen ari...");
@@ -196,6 +209,7 @@ public class Liburutegia {
                     "Erreg.-zenb.",
                     "  Sign.  ",
                     "        Izenburua        ");
+
             pw.printf("%-12s %-9s %-25s\n\n",
                     "------------",
                     "---------",
