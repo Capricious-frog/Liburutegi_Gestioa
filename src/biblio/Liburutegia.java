@@ -18,7 +18,8 @@ public class Liburutegia {
     /**
      * Defektuzko eraikitzailea
      */
-    private Liburutegia() {}
+    private Liburutegia() {
+    }
 
 
     /**
@@ -50,14 +51,13 @@ public class Liburutegia {
     private void txertatuOrdenean(Obra obra) {
         boolean txertatua = false;
 
-        for (int i = 0; i < zenbatObra && !txertatua; i++) {
-            if (katalogoa[i].getErregistroZenbakia() < obra.getErregistroZenbakia()) {
-                txertatua = true;
-                zenbatObra++;
+        if (zenbatObra == 0) {
+            katalogoa[zenbatObra] = obra;
+            zenbatObra++;
+        } else {
 
-                for(int j = i; j < zenbatObra; j++){
-                    katalogoa[i + 1] = katalogoa[i]; //TODO: Hau funtzio batean sartu
-                }
+            for (int i = 0; i < zenbatObra && !txertatua; i++) {
+                
             }
         }
 
@@ -78,13 +78,12 @@ public class Liburutegia {
             azkenErregistroZenbakia = 0;
 
             while (scanner.hasNextLine()) {
-
                 lerroa = scanner.nextLine();
                 String[] lerroOsagaiak = lerroa.split(" ");
                 txertatuOrdenean(new Obra(Integer.parseInt(lerroOsagaiak[1]), lerroOsagaiak[2], lerroOsagaiak[3], Boolean.parseBoolean(lerroOsagaiak[4])));
             }
 
-            azkenErregistroZenbakia = katalogoa[zenbatObra - 1].getErregistroZenbakia(); //TODO: Esto peta
+            azkenErregistroZenbakia = katalogoa[zenbatObra - 1].getErregistroZenbakia();
 
             System.out.println("...kargatu dira katalogoko aleak fitxategitik.");
 
@@ -142,15 +141,12 @@ public class Liburutegia {
             if (katalogoa[i].getErregistroZenbakia() == erregZenb) {
                 aurkitua = true;
 
-                // Array-aren kopia egiten du i-garren elementua gabe
-                if (zenbatObra - i >= 0) {
-                    System.arraycopy(katalogoa, i + 1, katalogoa, i, zenbatObra - i);
-                }
-                zenbatObra--;
+                ezabatuIGarrenPosizioa(i); // TODO: Esto esta mal, no guarda el cambio
             }
         }
 
     }
+
 
     /**
      * Erregistro zenbakia emanik, erregistro zenbaki hori duen obramaileguan egotera pasako da.
@@ -260,6 +256,20 @@ public class Liburutegia {
             System.out.println();
             e.printStackTrace();
         }
+    }
+
+
+    /**
+     * Indize bat emanda katalogoko obra kentzen du.
+     *
+     * @param i Posizioa
+     */
+    private void ezabatuIGarrenPosizioa(int i) {
+        // Array-aren kopia egiten du i-garren elementua gabe
+        if (zenbatObra - i >= 0) {
+            System.arraycopy(katalogoa, i + 1, katalogoa, i, zenbatObra - i);
+        }
+        zenbatObra--;
     }
 
 }
