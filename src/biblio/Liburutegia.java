@@ -55,7 +55,7 @@ public class Liburutegia {
             katalogoa[zenbatObra] = obra;
             zenbatObra++;
         } else {
-            for(int i = zenbatObra; i > 0 && !txertatua; i--) {
+            for (int i = zenbatObra; i > 0 && !txertatua; i--) {
                 if (katalogoa[i - 1].getErregistroZenbakia() > obra.getErregistroZenbakia()) {
                     katalogoa[i] = katalogoa[i - 1];
                 } else {
@@ -149,8 +149,7 @@ public class Liburutegia {
         for (int i = 0; i < zenbatObra && !aurkitua; i++) {
             if (katalogoa[i].getErregistroZenbakia() == erregZenb) {
                 aurkitua = true;
-
-                ezabatuIGarrenPosizioa(i); // TODO: Esto esta mal, no guarda el cambio
+                ezabatuIGarrenPosizioa(i);
             }
         }
 

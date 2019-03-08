@@ -12,14 +12,15 @@ public class Obra {
     /**
      * Eraikitzailea
      */
-    public Obra() {}
+    public Obra() {
+    }
 
 
     /**
      * Eraikitzailea
      *
      * @param eZenb erregistro zenbakia
-     * @param sig signatura
+     * @param sig   signatura
      * @param izenb izenburua
      */
     public Obra(int eZenb, String sig, String izenb) {
@@ -33,9 +34,9 @@ public class Obra {
      * Eraikitzailea
      *
      * @param eZenb erregistro zenbakia
-     * @param sig signatura
+     * @param sig   signatura
      * @param izenb izenburua
-     * @param mai mailegua
+     * @param mai   mailegua
      */
     public Obra(int eZenb, String sig, String izenb, boolean mai) {
         erregistroZenbakia = eZenb;
@@ -70,7 +71,6 @@ public class Obra {
 
 
     /**
-     *
      * @return Maileguan dagoen edo ez
      */
     public boolean getMaileguanDago() {
@@ -114,20 +114,18 @@ public class Obra {
 
 
     /**
-     *
      * @param pw Fitxategiaren PrintWriter -a
      */
-    public void idatziFitxategian(PrintWriter pw){
+    public void idatziFitxategian(PrintWriter pw) {
         pw.write("OBRA " + erregistroZenbakia + " " + signatura + " " + izenburua + " " + maileguanDa);
         pw.close();
     }
 
 
     /**
-     *
      * @return Obraren datuak bueltatzen ditu string batean.
      */
-    public String toString(){
+    public String toString() {
         return erregistroZenbakia + " " + signatura + " " + izenburua.replace(" ", "_") + " " + maileguanDa;
     }
 }
