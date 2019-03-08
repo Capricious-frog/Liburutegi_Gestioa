@@ -46,7 +46,7 @@ public class Liburutegia {
 
 
     /**
-     * @param obra iburutegian rdenatuta sartzeko obra
+     * @param obra Liburutegian ordenatuta sartu beharreko obra
      */
     private void txertatuOrdenean(Obra obra) {
         boolean txertatua = false;
@@ -55,9 +55,18 @@ public class Liburutegia {
             katalogoa[zenbatObra] = obra;
             zenbatObra++;
         } else {
+            for(int i = zenbatObra; i > 0 && !txertatua; i--) {
+                if (katalogoa[i - 1].getErregistroZenbakia() > obra.getErregistroZenbakia()) {
+                    katalogoa[i] = katalogoa[i - 1];
+                } else {
+                    katalogoa[i] = obra;
+                    zenbatObra++;
+                    txertatua = true;
+                }
+            }
 
-            for (int i = 0; i < zenbatObra && !txertatua; i++) {
-                
+            if (!txertatua) {
+                katalogoa[0] = obra;
             }
         }
 
@@ -152,7 +161,7 @@ public class Liburutegia {
      * Erregistro zenbakia emanik, erregistro zenbaki hori duen obramaileguan egotera pasako da.
      * Obra dagoeneko maileguan badago, mezu egokia idatziko dapantailan eta ez da mailegua egingo.
      *
-     * @param erregZenb
+     * @param erregZenb Erregistro zenbakia
      */
     public void mailegatuObra(int erregZenb) {
         erregZenbDuenAlea(erregZenb).maileguanEman();
@@ -163,7 +172,7 @@ public class Liburutegia {
      * Erregistro zenbakia emanik, erregistro zenbaki hori duen obra itzuli dutelaadieraziko du (dagoeneko ez dago maileguan).
      * Obra maileguan ez badago, mezu egokiaidatziko da pantailan.
      *
-     * @param erregZenb
+     * @param erregZenb Erregistro zenbakia
      */
     public void itzuliObra(int erregZenb) {
         erregZenbDuenAlea(erregZenb).maileguaKendu();
