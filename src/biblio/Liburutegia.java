@@ -3,16 +3,16 @@ package biblio;
 import obrak.Obra;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Liburutegia {
-    private final int OBRA_KOP_MAX = 50;
     private final String ALE_FITXATEGIEN_IZENA = "./src/aleak.txt";
     private final String MAILEGUEN_TXOSTENA = "./src/maileguak.txt";
 
-    private int zenbatObra, azkenErregistroZenbakia;
+    private int azkenErregistroZenbakia;
 
-    private Obra[] katalogoa = new Obra[OBRA_KOP_MAX];
+    ArrayList<Obra> katalogoa = new ArrayList<>();
     private static Liburutegia instantzia = null;
 
     /**
@@ -51,22 +51,20 @@ public class Liburutegia {
     private void txertatuOrdenean(Obra obra) {
         boolean txertatua = false;
 
-        if (zenbatObra == 0) {
-            katalogoa[zenbatObra] = obra;
-            zenbatObra++;
+        if (katalogoa.size() == 0) {
+            katalogoa.add(obra);
         } else {
-            for (int i = zenbatObra; i > 0 && !txertatua; i--) {
-                if (katalogoa[i - 1].getErregistroZenbakia() > obra.getErregistroZenbakia()) {
-                    katalogoa[i] = katalogoa[i - 1];
+            for (int i = katalogoa.size(); i > 0 && !txertatua; i--) {
+                if (katalogoa.get(i - 1).getErregistroZenbakia() > obra.getErregistroZenbakia()) {
+                    katalogoa.add(i, katalogoa.get(i - 1));
                 } else {
-                    katalogoa[i] = obra;
-                    zenbatObra++;
+                    katalogoa.add(i, obra);
                     txertatua = true;
                 }
             }
 
             if (!txertatua) {
-                katalogoa[0] = obra;
+                katalogoa.add(obra);
             }
         }
 
@@ -77,8 +75,6 @@ public class Liburutegia {
      * Obrak kargatzen ditu aleak.txt fitxategitik eta ordenan gordeko ditu bere erregistro zenbakiaren arabera
      */
     public void kargatuKatalogoaFitxategitik() {
-
-        zenbatObra = 0;
 
         System.out.println("Aleak kargatzen ari...");
 
@@ -92,7 +88,7 @@ public class Liburutegia {
                 txertatuOrdenean(new Obra(Integer.parseInt(lerroOsagaiak[1]), lerroOsagaiak[2], lerroOsagaiak[3], Boolean.parseBoolean(lerroOsagaiak[4])));
             }
 
-            azkenErregistroZenbakia = katalogoa[zenbatObra - 1].getErregistroZenbakia();
+            azkenErregistroZenbakia = katalogoa.get(katalogoa.size() - 1).getErregistroZenbakia();
 
             System.out.println("...kargatu dira katalogoko aleak fitxategitik.");
 
@@ -115,14 +111,14 @@ public class Liburutegia {
         boolean aurkitua = false;
         int pos = 0;
 
-        for (int i = 0; i < zenbatObra && !aurkitua; i++) {
-            if (katalogoa[i].getErregistroZenbakia() == erregZenb) {
+        for (int i = 0; i < katalogoa.size() && !aurkitua; i++) {
+            if (katalogoa.get(i).getErregistroZenbakia() == erregZenb) {
                 aurkitua = true;
                 pos = i;
             }
         }
 
-        return aurkitua ? katalogoa[pos] : new Obra();
+        return aurkitua ? katalogoa.get(pos) : new Obra();
     }
 
 
@@ -132,8 +128,7 @@ public class Liburutegia {
      * @param obra Gehitzeko obra
      */
     public void gehituObra(Obra obra) {
-        katalogoa[zenbatObra] = obra;
-        zenbatObra++;
+        katalogoa.add(obra);
     }
 
 
@@ -146,8 +141,8 @@ public class Liburutegia {
     public void kenduObra(int erregZenb) {
         boolean aurkitua = false;
 
-        for (int i = 0; i < zenbatObra && !aurkitua; i++) {
-            if (katalogoa[i].getErregistroZenbakia() == erregZenb) {
+        for (int i = 0; i < katalogoa.size() && !aurkitua; i++) {
+            if (katalogoa.get(i).getErregistroZenbakia() == erregZenb) {
                 aurkitua = true;
                 ezabatuIGarrenPosizioa(i);
             }
@@ -183,8 +178,8 @@ public class Liburutegia {
     public void katalogoaBistaratu() {
         System.out.println("====================== KATALOGOA ========================");
 
-        for (int i = 0; i < zenbatObra; i++) {
-            katalogoa[i].inprimatu();
+        for (int i = 0; i < katalogoa.size(); i++) {
+            katalogoa.get(i).inprimatu();
         }
 
         System.out.println("=========================================================");
@@ -214,9 +209,9 @@ public class Liburutegia {
                     "---------",
                     "-------------------------");
 
-            for (int i = 0; i < zenbatObra; i++) {
-                if (katalogoa[i].getMaileguanDago()) {
-                    pw.printf("%-12s %-9s %-25s\n", katalogoa[i].getErregistroZenbakia(), katalogoa[i].getSignatura(), katalogoa[i].getIzenburua());
+            for (int i = 0; i < katalogoa.size(); i++) {
+                if (katalogoa.get(i).getMaileguanDago()) {
+                    pw.printf("%-12s %-9s %-25s\n", katalogoa.get(i).getErregistroZenbakia(), katalogoa.get(i).getSignatura(), katalogoa.get(i).getIzenburua());
                 }
             }
 
@@ -237,7 +232,7 @@ public class Liburutegia {
      * @return Obra kopurua
      */
     public int getZenbatObra() {
-        return zenbatObra;
+        return katalogoa.size();
     }
 
     /**
@@ -250,8 +245,8 @@ public class Liburutegia {
         try {
             fw = new FileWriter(ALE_FITXATEGIEN_IZENA, false);
 
-            for (int i = 0; i < this.zenbatObra; i++) {
-                String lerroa = this.katalogoa[i].toString();
+            for (int i = 0; i < this.katalogoa.size(); i++) {
+                String lerroa = this.katalogoa.get(i).toString();
                 fw.write(lerroa); //+"\r\n");
                 fw.write("\r\n"); //UNIX edo Linuxen, "\n" nahikoa
             }
@@ -274,10 +269,9 @@ public class Liburutegia {
      */
     private void ezabatuIGarrenPosizioa(int i) {
         // Array-aren kopia egiten du i-garren elementua gabe
-        if (zenbatObra - i >= 0) {
-            System.arraycopy(katalogoa, i + 1, katalogoa, i, zenbatObra - i);
+        if (katalogoa.size() - i >= 0) {
+            System.arraycopy(katalogoa, i + 1, katalogoa, i, katalogoa.size() - i);
         }
-        zenbatObra--;
     }
 
 }
