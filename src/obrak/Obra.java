@@ -9,6 +9,20 @@ public class Obra {
     private boolean maileguanDa;
 
 
+    public class maileguanDa extends Exception {
+        public maileguanDa(){
+            super();
+        }
+    }
+
+    class ezDagoMaieleguan extends Exception {
+        public ezDagoMaieleguan(){
+            super();
+        }
+    }
+
+
+
     /**
      * Eraikitzailea
      */
@@ -83,9 +97,9 @@ public class Obra {
      */
     public void maileguanEman() {
         if (maileguanDa) {
-            // throw exception
+            // TODO throw new ezDagoMaieleguan();
         } else {
-            maileguanDa = true;
+           maileguanDa = true;
         }
     }
 
@@ -97,7 +111,7 @@ public class Obra {
         if (maileguanDa) {
             maileguanDa = false;
         } else {
-            // throw exception
+         // TODO  throw new maileguanDa();
         }
     }
 

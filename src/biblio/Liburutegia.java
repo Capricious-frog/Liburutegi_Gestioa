@@ -81,7 +81,6 @@ public class Liburutegia {
         try (Scanner scanner = new Scanner(new FileReader(ALE_FITXATEGIEN_IZENA))) {
             String lerroa;
             azkenErregistroZenbakia = 0;
-
             while (scanner.hasNextLine()) {
                 lerroa = scanner.nextLine();
                 String[] lerroOsagaiak = lerroa.split(" ");
@@ -101,8 +100,8 @@ public class Liburutegia {
 
 
     /**
-     * Emandako erregistro zenbakia duen obra itzultzen du. Emandakoerregistro zenbakia duen obrarik ez badago,
-     * errore-mezua idatzi irteera estandarretik etaitzuli obra “hutsa” emaitzatzat
+     * Emandako erregistro zenbakia duen obra itzultzen du. Emandako erregistro zenbakia duen obrarik ez badago,
+     * errore-mezua idatzi irteera estandarretik eta itzuli obra “hutsa” emaitzatzat
      *
      * @param erregZenb Erregistro zenbakia
      * @return Obra erregistro zenbaki hori duena
