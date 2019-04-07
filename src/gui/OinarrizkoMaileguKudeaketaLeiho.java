@@ -201,7 +201,7 @@ public class OinarrizkoMaileguKudeaketaLeiho extends JDialog {
         Liburutegia lib = Liburutegia.getInstance();
         try {
             Obra a = lib.erregZenbDuenAlea(erregZenb);
-            if (a.getErregZenbakia() != 0) { //alea existitzen bada...
+            if (a.getErregistroZenbakia() != 0) { //alea existitzen bada...
                 // egiaztatu mailegatuta dagoela, bestela ezin da itzuli:
 //			if (a.getMaileguanDa()==false) { //ez dago maileguan
                 if (!a.getMaileguanDago()) { //ez dago maileguan

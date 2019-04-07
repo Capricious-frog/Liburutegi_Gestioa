@@ -197,15 +197,15 @@ public class OinarrizkoKatalogoKudeaketaLeiho extends JDialog {
      */
     private void aleaEzabarazi(int erregZenbakia) {
         Liburutegia lib = Liburutegia.getInstance();
-//		try {
+		try {
         // erregistro-zenbaki bidezko ezabaketa:
         lib.kenduObra(erregZenbakia);
         JOptionPane.showMessageDialog(null, erregZenbakia
                 + " erregistro-zenbakiko alea ezabatu da.");
-//		} catch (Liburutegia.ErregZenbEzezaguna p) {
-//			System.err.println("Ez da aurkitu liburutegian " + erregZenbakia
-//					+ " erregistro-zenbakiko alerik."); //***tratamendurik???
-//		}
+		} catch (biblio.ErregZenbEzezaguna p) {
+			System.err.println("Ez da aurkitu liburutegian " + erregZenbakia
+					+ " erregistro-zenbakiko alerik."); //***tratamendurik???
+		}
     }
 
 }
