@@ -4,6 +4,8 @@ import obrak.Obra;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Liburutegia {
@@ -171,8 +173,11 @@ public class Liburutegia {
      * Obra dagoeneko maileguan badago, mezu egokia idatziko dapantailan eta ez da mailegua egingo.
      *
      * @param erregZenb Erregistro zenbakia
+     * @param izena
+     * @param date
+     * @param itzulketenData
      */
-    public void mailegatuObra(int erregZenb) throws ErregZenbEzezaguna {
+    public void mailegatuObra(int erregZenb, String izena, Date date, Date itzulketenData) throws ErregZenbEzezaguna {
         erregZenbDuenAlea(erregZenb).maileguanEman();
     }
 
@@ -275,5 +280,26 @@ public class Liburutegia {
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * @return Itzulketen data
+     */
+    public Date itzulketenData() {
+        Calendar egutegia = Calendar.getInstance();
+        egutegia.setTime(new Date()); //gaurko eguna
+        egutegia.add(Calendar.DATE, 12); //12 egun maileguan
+        return egutegia.getTime();
+    }
+
+
+    /**
+     *
+     * @return Data
+     */
+    public Date maileguenData() {
+        return new Date();
+    }
+
 
 }
