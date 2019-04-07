@@ -91,10 +91,17 @@ public class Liburutegia {
 
             System.out.println("...kargatu dira katalogoko aleak fitxategitik.");
 
+        } catch (FileNotFoundException e) {
+            System.out.println("...fitxategia ez da existitzen.");
+            System.out.println();
+            e.printStackTrace();
+            System.exit(-1);
+
         } catch (Exception e) {
             System.out.println("...ezin izan dira aleak kargatu fitxategitik.");
             System.out.println();
             e.printStackTrace();
+            System.exit(-1);
         }
     }
 
@@ -106,7 +113,7 @@ public class Liburutegia {
      * @param erregZenb Erregistro zenbakia
      * @return Obra erregistro zenbaki hori duena
      */
-    public Obra erregZenbDuenAlea(int erregZenb) {
+    public Obra erregZenbDuenAlea(int erregZenb) throws ErregZenbEzezaguna {
         boolean aurkitua = false;
         int pos = 0;
 
@@ -117,7 +124,12 @@ public class Liburutegia {
             }
         }
 
-        return aurkitua ? katalogoa.get(pos) : new Obra();
+        if (aurkitua) {
+            return katalogoa.get(pos);
+        } else {
+            throw new ErregZenbEzezaguna(String.valueOf(erregZenb));
+        }
+
     }
 
 
@@ -137,7 +149,7 @@ public class Liburutegia {
      *
      * @param erregZenb Erregistro zenbakia
      */
-    public void kenduObra(int erregZenb) {
+    public void kenduObra(int erregZenb) throws ErregZenbEzezaguna {
         boolean aurkitua = false;
 
         for (int i = 0; i < katalogoa.size() && !aurkitua; i++) {
@@ -145,6 +157,10 @@ public class Liburutegia {
                 aurkitua = true;
                 ezabatuIGarrenPosizioa(i);
             }
+        }
+
+        if (!aurkitua) {
+            throw new ErregZenbEzezaguna(String.valueOf(erregZenb));
         }
 
     }
@@ -156,7 +172,7 @@ public class Liburutegia {
      *
      * @param erregZenb Erregistro zenbakia
      */
-    public void mailegatuObra(int erregZenb) {
+    public void mailegatuObra(int erregZenb) throws ErregZenbEzezaguna {
         erregZenbDuenAlea(erregZenb).maileguanEman();
     }
 
@@ -167,7 +183,7 @@ public class Liburutegia {
      *
      * @param erregZenb Erregistro zenbakia
      */
-    public void itzuliObra(int erregZenb) {
+    public void itzuliObra(int erregZenb) throws ErregZenbEzezaguna {
         erregZenbDuenAlea(erregZenb).maileguaKendu();
     }
 

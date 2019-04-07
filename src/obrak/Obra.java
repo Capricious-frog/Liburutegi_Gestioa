@@ -1,5 +1,7 @@
 package obrak;
 
+import biblio.ErregZenbEzezaguna;
+
 import java.io.PrintWriter;
 
 public class Obra {
@@ -7,20 +9,6 @@ public class Obra {
     private int erregistroZenbakia;
     private String signatura, izenburua;
     private boolean maileguanDa;
-
-
-    public class maileguanDa extends Exception {
-        public maileguanDa(){
-            super();
-        }
-    }
-
-    class ezDagoMaieleguan extends Exception {
-        public ezDagoMaieleguan(){
-            super();
-        }
-    }
-
 
 
     /**
@@ -95,9 +83,9 @@ public class Obra {
     /**
      * Obra maileguan jartzen du
      */
-    public void maileguanEman() {
+    public void maileguanEman() throws ErregZenbEzezaguna {
         if (maileguanDa) {
-            // TODO throw new ezDagoMaieleguan();
+            throw new ErregZenbEzezaguna();
         } else {
            maileguanDa = true;
         }
@@ -107,11 +95,11 @@ public class Obra {
     /**
      * Obra mailegutik kentzen du
      */
-    public void maileguaKendu() {
+    public void maileguaKendu() throws ErregZenbEzezaguna {
         if (maileguanDa) {
             maileguanDa = false;
         } else {
-         // TODO  throw new maileguanDa();
+         throw new ErregZenbEzezaguna();
         }
     }
 

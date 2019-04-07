@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Component;
 
+import biblio.ErregZenbEzezaguna;
 import biblio.Liburutegia;
 //import biblio.Liburutegia.ErregZenbEzezaguna;
 import obrak.Obra;
@@ -118,47 +119,47 @@ public class OinarrizkoKatalogoKudeaketaLeiho extends JDialog {
                         JOptionPane.QUESTION_MESSAGE);
                 Liburutegia lib = Liburutegia.getInstance();
                 Obra obra;
-                //				try {
-                if (erregZenbakia != null) { //ez du Cancel sakatu
-                    obra = lib.erregZenbDuenAlea(Integer.parseInt(erregZenbakia));
-                    if (obra.getErregistroZenbakia() != 0) { //alea existitzen bada...
-                        if (obra.getMaileguanDago() == true) { //maileguan badago, baieztarazi ezabatu nahia
-                            erantzuna = JOptionPane.showConfirmDialog(
-                                    null,
-                                    "Ale hori maileguan dago: aurrera egin nahi duzu?",
-                                    "Liburutegia - Ale mailegatua, ezabaketa baieztarazi",
-                                    JOptionPane.YES_NO_OPTION);
-                            if (erantzuna == JOptionPane.YES_OPTION) {
+                try {
+                    if (erregZenbakia != null) { //ez du Cancel sakatu
+                        obra = lib.erregZenbDuenAlea(Integer.parseInt(erregZenbakia));
+                        if (obra.getErregistroZenbakia() != 0) { //alea existitzen bada...
+                            if (obra.getMaileguanDago() == true) { //maileguan badago, baieztarazi ezabatu nahia
                                 erantzuna = JOptionPane.showConfirmDialog(
                                         null,
-                                        erregZenbakia + " erregistro-zenbakiko ale mailegatua ezabatzera zoaz: ziur zaude?",
-                                        "Liburutegia - Ale mailegatua ezabatu, baieztapena",
+                                        "Ale hori maileguan dago: aurrera egin nahi duzu?",
+                                        "Liburutegia - Ale mailegatua, ezabaketa baieztarazi",
+                                        JOptionPane.YES_NO_OPTION);
+                                if (erantzuna == JOptionPane.YES_OPTION) {
+                                    erantzuna = JOptionPane.showConfirmDialog(
+                                            null,
+                                            erregZenbakia + " erregistro-zenbakiko ale mailegatua ezabatzera zoaz: ziur zaude?",
+                                            "Liburutegia - Ale mailegatua ezabatu, baieztapena",
+                                            JOptionPane.YES_NO_OPTION);
+                                    if (erantzuna == JOptionPane.YES_OPTION) {
+                                        aleaEzabarazi(Integer.parseInt(erregZenbakia));
+                                    }
+                                }
+                            } else { //ezabatu alea
+                                erantzuna = JOptionPane.showConfirmDialog(
+                                        null,
+                                        erregZenbakia + " erregistro-zenbakiko alea ezabatzera zoaz: ziur zaude?",
+                                        "Liburutegia - Alea ezabatu, baieztapena",
                                         JOptionPane.YES_NO_OPTION);
                                 if (erantzuna == JOptionPane.YES_OPTION) {
                                     aleaEzabarazi(Integer.parseInt(erregZenbakia));
                                 }
                             }
-                        } else { //ezabatu alea
-                            erantzuna = JOptionPane.showConfirmDialog(
+                        } else {
+                            JOptionPane.showMessageDialog(
                                     null,
-                                    erregZenbakia + " erregistro-zenbakiko alea ezabatzera zoaz: ziur zaude?",
-                                    "Liburutegia - Alea ezabatu, baieztapena",
-                                    JOptionPane.YES_NO_OPTION);
-                            if (erantzuna == JOptionPane.YES_OPTION) {
-                                aleaEzabarazi(Integer.parseInt(erregZenbakia));
-                            }
+                                    "Ale hori ez da existitzen, ezin da kendu!",
+                                    "Liburutegia - Ezabaketa ez da zilegi",
+                                    JOptionPane.OK_OPTION);
                         }
-                    } else {
-                        JOptionPane.showMessageDialog(
-                                null,
-                                "Ale hori ez da existitzen, ezin da kendu!",
-                                "Liburutegia - Ezabaketa ez da zilegi",
-                                JOptionPane.OK_OPTION);
                     }
+                } catch (ErregZenbEzezaguna e1) {
+                    e1.printStackTrace();
                 }
-                //				} catch (ErregZenbEzezaguna e1) {
-                //					e1.printStackTrace();
-                //				}
             }
         };
 
