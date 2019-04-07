@@ -51,7 +51,7 @@ public class Liburutegia {
     private void txertatuOrdenean(Obra obra) {
         boolean txertatua = false;
 
-        if (katalogoa.size() == 0) {
+        if (katalogoa.isEmpty()) {
             katalogoa.add(obra);
         } else {
             for (int i = katalogoa.size(); i > 0 && !txertatua; i--) {
@@ -155,7 +155,7 @@ public class Liburutegia {
         for (int i = 0; i < katalogoa.size() && !aurkitua; i++) {
             if (katalogoa.get(i).getErregistroZenbakia() == erregZenb) {
                 aurkitua = true;
-                ezabatuIGarrenPosizioa(i);
+                katalogoa.remove(i);
             }
         }
 
@@ -193,8 +193,8 @@ public class Liburutegia {
     public void katalogoaBistaratu() {
         System.out.println("====================== KATALOGOA ========================");
 
-        for (int i = 0; i < katalogoa.size(); i++) {
-            katalogoa.get(i).inprimatu();
+        for (Obra obra : katalogoa) {
+            obra.inprimatu();
         }
 
         System.out.println("=========================================================");
@@ -224,9 +224,9 @@ public class Liburutegia {
                     "---------",
                     "-------------------------");
 
-            for (int i = 0; i < katalogoa.size(); i++) {
-                if (katalogoa.get(i).getMaileguanDago()) {
-                    pw.printf("%-12s %-9s %-25s\n", katalogoa.get(i).getErregistroZenbakia(), katalogoa.get(i).getSignatura(), katalogoa.get(i).getIzenburua());
+            for (Obra obra : katalogoa) {
+                if (obra.getMaileguanDago()) {
+                    pw.printf("%-12s %-9s %-25s\n", obra.getErregistroZenbakia(), obra.getSignatura(), obra.getIzenburua());
                 }
             }
 
@@ -260,8 +260,8 @@ public class Liburutegia {
         try {
             fw = new FileWriter(ALE_FITXATEGIEN_IZENA, false);
 
-            for (int i = 0; i < this.katalogoa.size(); i++) {
-                String lerroa = this.katalogoa.get(i).toString();
+            for (Obra obra : this.katalogoa) {
+                String lerroa = obra.toString();
                 fw.write(lerroa); //+"\r\n");
                 fw.write("\r\n"); //UNIX edo Linuxen, "\n" nahikoa
             }
@@ -273,19 +273,6 @@ public class Liburutegia {
             System.out.println("Aleak ezin izan dira gorde.");
             System.out.println();
             e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * Indize bat emanda katalogoko obra kentzen du.
-     *
-     * @param i Posizioa
-     */
-    private void ezabatuIGarrenPosizioa(int i) {
-        // Array-aren kopia egiten du i-garren elementua gabe
-        if (katalogoa.size() - i >= 0) {
-            System.arraycopy(katalogoa, i + 1, katalogoa, i, katalogoa.size() - i);
         }
     }
 
