@@ -1,5 +1,6 @@
 package biblio;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -25,12 +26,12 @@ public class Mailegu {
     /**
      * Maileguen atributuak idazten ditu pantailan, lerro bakarrean.
      */
-    public void inprimatu() {
+    public void idatziFitxategian(PrintWriter pw) {
         SimpleDateFormat dF = new SimpleDateFormat("yyyy-MM-dd");
-        System.out.println(erregistroZenbakia + ", "
-                + bazkideIzena + " bazkideari mailegatutako alea; "
-                + "mailegu-data: " + dF.format(this.maileguData)
-                + "; itzultze data:" + dF.format(this.itzultzeData));
+        pw.printf("%-17s %-12s %-13s",
+                this.bazkideIzena,
+                dF.format(this.maileguData),
+                dF.format(this.itzultzeData));
     }
 
 

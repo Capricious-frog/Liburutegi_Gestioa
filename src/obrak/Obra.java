@@ -3,6 +3,7 @@ package obrak;
 import biblio.ErregZenbEzezaguna;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 
 public class Obra {
 
@@ -87,7 +88,7 @@ public class Obra {
         if (maileguanDa) {
             throw new ErregZenbEzezaguna();
         } else {
-           maileguanDa = true;
+            maileguanDa = true;
         }
     }
 
@@ -99,7 +100,7 @@ public class Obra {
         if (maileguanDa) {
             maileguanDa = false;
         } else {
-         throw new ErregZenbEzezaguna();
+            throw new ErregZenbEzezaguna();
         }
     }
 
