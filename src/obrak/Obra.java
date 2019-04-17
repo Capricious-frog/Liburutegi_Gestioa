@@ -115,6 +115,17 @@ public abstract class Obra {
                 " / Maileguan?: " + maileguanDa);
     }
 
+    /**
+     * Obraren informazioa inprimatzen du
+     */
+    public void ezaugarrienLista() {
+        System.out.println("Erreg.-zenb.: " + erregistroZenbakia +
+                " / Signatura: " + signatura +
+                " / Izenburua: " + izenburua +
+                " / Maileguan?: " + maileguanDa);
+    }
+
+
 
     /**
      * @param pw Fitxategiaren PrintWriter -a
