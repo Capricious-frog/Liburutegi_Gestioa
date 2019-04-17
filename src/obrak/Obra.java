@@ -5,7 +5,7 @@ import biblio.ErregZenbEzezaguna;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 
-public class Obra {
+public abstract class Obra {
 
     private int erregistroZenbakia;
     private String signatura, izenburua;
@@ -72,37 +72,37 @@ public class Obra {
         return izenburua;
     }
 
-
-    /**
-     * @return Maileguan dagoen edo ez
-     */
-    public boolean getMaileguanDago() {
-        return maileguanDa;
-    }
-
-
-    /**
-     * Obra maileguan jartzen du
-     */
-    public void maileguanEman() throws ErregZenbEzezaguna {
-        if (maileguanDa) {
-            throw new ErregZenbEzezaguna();
-        } else {
-            maileguanDa = true;
-        }
-    }
+//
+//    /**
+//     * @return Maileguan dagoen edo ez
+//     */
+//    public boolean getMaileguanDago() {
+//        return maileguanDa;
+//    }
 
 
-    /**
-     * Obra mailegutik kentzen du
-     */
-    public void maileguaKendu() throws ErregZenbEzezaguna {
-        if (maileguanDa) {
-            maileguanDa = false;
-        } else {
-            throw new ErregZenbEzezaguna();
-        }
-    }
+//    /**
+//     * Obra maileguan jartzen du
+//     */
+//    public void maileguanEman() throws ErregZenbEzezaguna {
+//        if (maileguanDa) {
+//            throw new ErregZenbEzezaguna();
+//        } else {
+//            maileguanDa = true;
+//        }
+//    }
+
+
+//    /**
+//     * Obra mailegutik kentzen du
+//     */
+//    public void maileguaKendu() throws ErregZenbEzezaguna {
+//        if (maileguanDa) {
+//            maileguanDa = false;
+//        } else {
+//            throw new ErregZenbEzezaguna();
+//        }
+//    }
 
 
     /**
