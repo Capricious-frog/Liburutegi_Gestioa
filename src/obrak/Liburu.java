@@ -8,6 +8,11 @@ public class Liburu extends Testu {
         this.deskribapena = deskribapena;
     }
 
+    public Liburu(String[] alea) {
+        super(Integer.parseInt(alea[1]), alea[2], alea[3], alea[4], alea[5]);
+        this.deskribapena = alea[6];
+    }
+
     public String getDeskribapena() {
         return deskribapena;
     }

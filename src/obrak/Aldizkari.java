@@ -10,6 +10,11 @@ public class Aldizkari extends Obra {
         this.ISSN = ISSN;
     }
 
+    public Aldizkari(String[] alea) {
+        super(Integer.parseInt(alea[1]), alea[2], alea[3]);
+        this.aleZenbakia = Integer.parseInt(alea[4]);
+        this.ISSN = alea[5];
+    }
 
     public int getAleZenbakia() {
         return aleZenbakia;

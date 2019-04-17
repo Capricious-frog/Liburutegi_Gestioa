@@ -3,8 +3,14 @@ package obrak;
 public class Hiztegi extends Konposatu {
     private String hizkuntzak;
 
-    public Hiztegi(int eZenb, String sig, String izenb, String egilea, String argitaletxea, int liburukiKopurua) {
+    public Hiztegi(int eZenb, String sig, String izenb, String egilea, String argitaletxea, int liburukiKopurua, String hizkuntzak) {
         super(eZenb, sig, izenb, egilea, argitaletxea, liburukiKopurua);
+        this.hizkuntzak = hizkuntzak;
+    }
+
+    public Hiztegi(String[] alea) {
+        super(Integer.parseInt(alea[1]), alea[2], alea[3], alea[4], alea[5], Integer.parseInt(alea[6]));
+        this.hizkuntzak = alea[7];
     }
 
     public String getHizkuntzak() {
