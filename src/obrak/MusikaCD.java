@@ -20,4 +20,13 @@ public class MusikaCD extends Multimedia {
     public void setInterpretea(String interpretea) {
         this.interpretea = interpretea;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() +
+                "{" +
+                super.toString() +
+                "interpretea='" + interpretea + '\'' +
+                '}';
+    }
 }

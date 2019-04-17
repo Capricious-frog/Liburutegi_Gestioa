@@ -23,4 +23,14 @@ public class Aldizkari extends Obra {
     public void setAleZenbakia(int aleZenbakia) {
         this.aleZenbakia = aleZenbakia;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() +
+                "{" +
+                super.toString() +
+                "aleZenbakia=" + aleZenbakia +
+                ", ISSN='" + ISSN + '\'' +
+                '}';
+    }
 }

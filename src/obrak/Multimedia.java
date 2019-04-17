@@ -15,4 +15,13 @@ public class Multimedia extends Obra {
     public void setEkoizlea(String ekoizlea) {
         this.ekoizlea = ekoizlea;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() +
+                "{" +
+                super.toString() +
+                "ekoizlea='" + ekoizlea + '\'' +
+                '}';
+    }
 }

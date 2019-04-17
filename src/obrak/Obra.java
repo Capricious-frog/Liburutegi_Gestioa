@@ -129,6 +129,7 @@ public abstract class Obra {
      * @return Obraren datuak bueltatzen ditu string batean.
      */
     public String toString() {
-        return erregistroZenbakia + " " + signatura + " " + izenburua.replace(" ", "_") + " " + maileguanDa;
+        //return erregistroZenbakia + " " + signatura + " " + izenburua.replace(" ", "_") + " " + maileguanDa;
+        return erregistroZenbakia + " " + signatura + " " + izenburua.replace(" ", "_");
     }
 }

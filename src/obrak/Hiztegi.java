@@ -20,4 +20,13 @@ public class Hiztegi extends Konposatu {
     public void setHizkuntzak(String hizkuntzak) {
         this.hizkuntzak = hizkuntzak;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() +
+                "{" +
+                super.toString() +
+                "hizkuntzak='" + hizkuntzak + '\'' +
+                '}';
+    }
 }

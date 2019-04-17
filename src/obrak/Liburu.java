@@ -20,4 +20,13 @@ public class Liburu extends Testu {
     public void setDeskribapena(String deskribapena) {
         this.deskribapena = deskribapena;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() +
+                "{" +
+                super.toString() +
+                "deskribapena='" + deskribapena + '\'' +
+                '}';
+    }
 }

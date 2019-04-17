@@ -20,4 +20,13 @@ public class Entziklopedia extends Konposatu {
     public void setGaia(String gaia) {
         this.gaia = gaia;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() +
+                "{" +
+                super.toString() +
+                "gaia='" + gaia + '\'' +
+                '}';
+    }
 }

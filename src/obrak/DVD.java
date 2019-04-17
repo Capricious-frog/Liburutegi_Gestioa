@@ -20,4 +20,13 @@ public class DVD extends Multimedia {
     public void setZuzendaria(String zuzendaria) {
         this.zuzendaria = zuzendaria;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() +
+                "{" +
+                super.toString() +
+                "zuzendaria='" + zuzendaria + '\'' +
+                '}';
+    }
 }

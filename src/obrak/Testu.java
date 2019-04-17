@@ -17,4 +17,14 @@ public class Testu extends Obra {
     public void setEgilea(String egilea) {
         this.egilea = egilea;
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() +
+                "{" +
+                super.toString() +
+                "egilea='" + egilea + '\'' +
+                ", argitaletxea='" + argitaletxea + '\'' +
+                '}';
+    }
 }
