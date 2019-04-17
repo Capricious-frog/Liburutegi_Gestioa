@@ -4,6 +4,12 @@ public class Testu extends Obra {
     private String egilea;
     private String argitaletxea;
 
+    public Testu(int eZenb, String sig, String izenb, String egilea, String argitaletxea) {
+        super(eZenb, sig, izenb);
+        this.egilea = egilea;
+        this.argitaletxea = argitaletxea;
+    }
+
     public String getEgilea() {
         return egilea;
     }
