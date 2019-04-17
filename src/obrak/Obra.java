@@ -33,20 +33,20 @@ public abstract class Obra {
     }
 
 
-    /**
-     * Eraikitzailea
-     *
-     * @param eZenb erregistro zenbakia
-     * @param sig   signatura
-     * @param izenb izenburua
-     * @param mai   mailegua
-     */
-    public Obra(int eZenb, String sig, String izenb, boolean mai) {
-        erregistroZenbakia = eZenb;
-        signatura = sig;
-        izenburua = izenb;
-        maileguanDa = mai;
-    }
+//    /**
+//     * Eraikitzailea
+//     *
+//     * @param eZenb erregistro zenbakia
+//     * @param sig   signatura
+//     * @param izenb izenburua
+//     * @param mai   mailegua
+//     */
+//    public Obra(int eZenb, String sig, String izenb, boolean mai) {
+//        erregistroZenbakia = eZenb;
+//        signatura = sig;
+//        izenburua = izenb;
+//        maileguanDa = mai;
+//    }
 
 
     /**
