@@ -125,13 +125,9 @@ public abstract class Obra {
         eL.add(Integer.toString(erregistroZenbakia));
         eL.add(signatura);
         eL.add(izenburua);
-        //TODO ...
+        eL.add(String.valueOf(maileguanDa));
 
-
-        System.out.println("Erreg.-zenb.: " + erregistroZenbakia +
-                " / Signatura: " + signatura +
-                " / Izenburua: " + izenburua +
-                " / Maileguan?: " + maileguanDa);
+        return eL;
     }
 
 
