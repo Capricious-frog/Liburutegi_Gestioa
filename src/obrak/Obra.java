@@ -4,6 +4,7 @@ import biblio.ErregZenbEzezaguna;
 
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
 public abstract class Obra {
 
@@ -118,7 +119,15 @@ public abstract class Obra {
     /**
      * Obraren informazioa inprimatzen du
      */
-    public void ezaugarrienLista() {
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL =new ArrayList<>();
+        eL.add(this.getClass().getSimpleName().toUpperCase());
+        eL.add(Integer.toString(erregistroZenbakia));
+        eL.add(signatura);
+        eL.add(izenburua);
+        //TODO ...
+
+
         System.out.println("Erreg.-zenb.: " + erregistroZenbakia +
                 " / Signatura: " + signatura +
                 " / Izenburua: " + izenburua +
