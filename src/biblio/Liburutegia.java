@@ -172,7 +172,7 @@ public class Liburutegia {
      * Erregistro zenbakia emanik, erregistro zenbaki hori duen obramaileguan egotera pasako da.
      * Obra dagoeneko maileguan badago, mezu egokia idatziko dapantailan eta ez da mailegua egingo.
      *
-     * @param erregZenb Erregistro zenbakia
+     * @param erregZenb      Erregistro zenbakia
      * @param izena
      * @param date
      * @param itzulketenData
@@ -294,7 +294,6 @@ public class Liburutegia {
 
 
     /**
-     *
      * @return Data
      */
     public Date maileguenData() {

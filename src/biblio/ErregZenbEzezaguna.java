@@ -1,7 +1,7 @@
 package biblio;
 
 public class ErregZenbEzezaguna extends Throwable {
-    public ErregZenbEzezaguna(){
+    public ErregZenbEzezaguna() {
 
     }
 

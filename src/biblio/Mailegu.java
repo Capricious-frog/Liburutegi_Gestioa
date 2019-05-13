@@ -17,9 +17,9 @@ public class Mailegu {
      * Eraikitzailea
      *
      * @param erregistroZenbakia Erregistro zenbakia
-     * @param bazkideIzena Bazkide izena
-     * @param maileguData Mailegu data
-     * @param itzultzeData Itzultze data
+     * @param bazkideIzena       Bazkide izena
+     * @param maileguData        Mailegu data
+     * @param itzultzeData       Itzultze data
      */
     public Mailegu(int erregistroZenbakia, String bazkideIzena, Date maileguData, Date itzultzeData) {
 
@@ -59,8 +59,6 @@ public class Mailegu {
 
 
     /**
-     *
-     *
      * @return
      */
     public String getBazkideIzena() {
@@ -69,8 +67,6 @@ public class Mailegu {
 
 
     /**
-     *
-     *
      * @param bazkideIzena Bazkide izena
      */
     public void setBazkideIzena(String bazkideIzena) {
@@ -79,8 +75,6 @@ public class Mailegu {
 
 
     /**
-     *
-     *
      * @return Mailegu data
      */
     public Date getMaileguData() {
@@ -89,8 +83,6 @@ public class Mailegu {
 
 
     /**
-     *
-     *
      * @param maileguData Mailegu data
      */
     public void setMaileguData(Date maileguData) {
@@ -99,8 +91,6 @@ public class Mailegu {
 
 
     /**
-     *
-     *
      * @return Itzultze data
      */
     public Date getItzultzeData() {
@@ -109,8 +99,6 @@ public class Mailegu {
 
 
     /**
-     *
-     *
      * @param itzultzeData Itzultze data
      */
     public void setItzultzeData(Date itzultzeData) {
