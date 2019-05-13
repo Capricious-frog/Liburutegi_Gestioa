@@ -1,5 +1,7 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class Konposatu extends Testu {
     private int liburukiKopurua;
 
@@ -14,5 +16,13 @@ public class Konposatu extends Testu {
 
     public void setLiburukiKopurua(int liburukiKopurua) {
         this.liburukiKopurua = liburukiKopurua;
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(String.valueOf(liburukiKopurua));
+
+        return eL;
     }
 }

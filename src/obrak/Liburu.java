@@ -1,5 +1,7 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class Liburu extends Testu {
     private String deskribapena;
 
@@ -28,5 +30,13 @@ public class Liburu extends Testu {
                 super.toString() +
                 "deskribapena='" + deskribapena + '\'' +
                 '}';
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(deskribapena);
+
+        return eL;
     }
 }

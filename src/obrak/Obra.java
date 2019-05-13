@@ -120,16 +120,14 @@ public abstract class Obra {
      * Obraren informazioa inprimatzen du
      */
     public ArrayList<String> ezaugarrienLista() {
-        ArrayList<String> eL =new ArrayList<>();
+        ArrayList<String> eL = new ArrayList<>();
         eL.add(this.getClass().getSimpleName().toUpperCase());
         eL.add(Integer.toString(erregistroZenbakia));
         eL.add(signatura);
         eL.add(izenburua);
-        eL.add(String.valueOf(maileguanDa));
 
         return eL;
     }
-
 
 
     /**

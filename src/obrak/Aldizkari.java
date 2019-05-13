@@ -1,5 +1,7 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class Aldizkari extends Obra {
     private int aleZenbakia;
     private String ISSN;
@@ -32,5 +34,14 @@ public class Aldizkari extends Obra {
                 "aleZenbakia=" + aleZenbakia +
                 ", ISSN='" + ISSN + '\'' +
                 '}';
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(Integer.toString(aleZenbakia));
+        eL.add(ISSN);
+
+        return eL;
     }
 }

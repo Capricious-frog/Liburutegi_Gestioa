@@ -1,11 +1,13 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class MusikaCD extends Multimedia {
     private String interpretea;
 
     public MusikaCD(int eZenb, String sig, String izenb, String ekoizlea, String interpretea) {
         super(eZenb, sig, izenb, ekoizlea);
-        this. interpretea = interpretea;
+        this.interpretea = interpretea;
     }
 
     public MusikaCD(String[] alea) {
@@ -28,5 +30,13 @@ public class MusikaCD extends Multimedia {
                 super.toString() +
                 "interpretea='" + interpretea + '\'' +
                 '}';
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(interpretea);
+
+        return eL;
     }
 }

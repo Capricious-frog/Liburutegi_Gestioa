@@ -1,5 +1,7 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class Hiztegi extends Konposatu {
     private String hizkuntzak;
 
@@ -28,5 +30,13 @@ public class Hiztegi extends Konposatu {
                 super.toString() +
                 "hizkuntzak='" + hizkuntzak + '\'' +
                 '}';
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(hizkuntzak);
+
+        return eL;
     }
 }

@@ -1,5 +1,7 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class Multimedia extends Obra {
     private String ekoizlea;
 
@@ -23,5 +25,13 @@ public class Multimedia extends Obra {
                 super.toString() +
                 "ekoizlea='" + ekoizlea + '\'' +
                 '}';
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(ekoizlea);
+
+        return eL;
     }
 }

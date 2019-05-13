@@ -1,5 +1,7 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class Testu extends Obra {
     private String egilea;
     private String argitaletxea;
@@ -26,5 +28,14 @@ public class Testu extends Obra {
                 "egilea='" + egilea + '\'' +
                 ", argitaletxea='" + argitaletxea + '\'' +
                 '}';
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(egilea);
+        eL.add(argitaletxea);
+
+        return eL;
     }
 }

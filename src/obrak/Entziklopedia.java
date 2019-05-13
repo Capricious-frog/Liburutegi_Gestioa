@@ -1,5 +1,7 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class Entziklopedia extends Konposatu {
     private String gaia;
 
@@ -28,5 +30,13 @@ public class Entziklopedia extends Konposatu {
                 super.toString() +
                 "gaia='" + gaia + '\'' +
                 '}';
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(gaia);
+
+        return eL;
     }
 }

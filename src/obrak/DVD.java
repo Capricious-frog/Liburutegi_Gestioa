@@ -1,11 +1,13 @@
 package obrak;
 
+import java.util.ArrayList;
+
 public class DVD extends Multimedia {
     private String zuzendaria;
 
     public DVD(int eZenb, String sig, String izenb, String ekoizlea, String zuzendaria) {
         super(eZenb, sig, izenb, ekoizlea);
-        this .zuzendaria = zuzendaria;
+        this.zuzendaria = zuzendaria;
     }
 
     public DVD(String[] alea) {
@@ -28,5 +30,13 @@ public class DVD extends Multimedia {
                 super.toString() +
                 "zuzendaria='" + zuzendaria + '\'' +
                 '}';
+    }
+
+    @Override
+    public ArrayList<String> ezaugarrienLista() {
+        ArrayList<String> eL = super.ezaugarrienLista();
+        eL.add(zuzendaria);
+
+        return eL;
     }
 }
