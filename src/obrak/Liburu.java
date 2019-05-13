@@ -2,7 +2,7 @@ package obrak;
 
 import java.util.ArrayList;
 
-public class Liburu extends Testu {
+public abstract class Liburu extends Testu implements IMailegagarri {
     private String deskribapena;
 
     public Liburu(int eZenb, String sig, String izenb, String egilea, String argitaletxea, String deskribapena) {

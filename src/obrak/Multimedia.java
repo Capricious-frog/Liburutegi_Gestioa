@@ -2,7 +2,7 @@ package obrak;
 
 import java.util.ArrayList;
 
-public class Multimedia extends Obra {
+public abstract class Multimedia extends Obra implements IMailegagarri {
     private String ekoizlea;
 
     public Multimedia(int eZenb, String sig, String izenb, String ekoizlea) {
