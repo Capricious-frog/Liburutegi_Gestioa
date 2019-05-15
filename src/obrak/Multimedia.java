@@ -2,8 +2,9 @@ package obrak;
 
 import java.util.ArrayList;
 
-public abstract class Multimedia extends Obra implements IMailegagarri {
+public class Multimedia extends Obra implements IMailegagarri {
     private String ekoizlea;
+    private boolean maileguanDa;
 
     public Multimedia(int eZenb, String sig, String izenb, String ekoizlea) {
         super(eZenb, sig, izenb);
@@ -33,5 +34,25 @@ public abstract class Multimedia extends Obra implements IMailegagarri {
         eL.add(ekoizlea);
 
         return eL;
+    }
+
+    @Override
+    public void maileguanEman() {
+        maileguanDa = true;
+    }
+
+    @Override
+    public void maileguaKendu() {
+        maileguanDa = false;
+    }
+
+    @Override
+    public boolean maileguanDago() {
+        return maileguanDa;
+    }
+
+    @Override
+    public void maileguEzaugarrienLista() {
+
     }
 }

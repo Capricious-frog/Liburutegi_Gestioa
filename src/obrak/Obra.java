@@ -1,9 +1,7 @@
 package obrak;
 
-import biblio.ErregZenbEzezaguna;
 
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public abstract class Obra {
@@ -125,6 +123,10 @@ public abstract class Obra {
         eL.add(Integer.toString(erregistroZenbakia));
         eL.add(signatura);
         eL.add(izenburua);
+        eL.add("");
+        eL.add("");
+        eL.add("");
+        eL.add("");
 
         return eL;
     }

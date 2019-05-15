@@ -2,8 +2,9 @@ package obrak;
 
 import java.util.ArrayList;
 
-public abstract class Liburu extends Testu implements IMailegagarri {
+public class Liburu extends Testu implements IMailegagarri {
     private String deskribapena;
+    private boolean maileguanDa;
 
     public Liburu(int eZenb, String sig, String izenb, String egilea, String argitaletxea, String deskribapena) {
         super(eZenb, sig, izenb, egilea, argitaletxea);
@@ -36,7 +37,28 @@ public abstract class Liburu extends Testu implements IMailegagarri {
     public ArrayList<String> ezaugarrienLista() {
         ArrayList<String> eL = super.ezaugarrienLista();
         eL.add(deskribapena);
+        eL.add(String.valueOf(maileguanDa));
 
         return eL;
+    }
+
+    @Override
+    public void maileguanEman() {
+        maileguanDa = true;
+    }
+
+    @Override
+    public void maileguaKendu() {
+        maileguanDa = false;
+    }
+
+    @Override
+    public boolean maileguanDago() {
+        return maileguanDa;
+    }
+
+    @Override
+    public void maileguEzaugarrienLista() {
+
     }
 }

@@ -1,12 +1,9 @@
 package biblio;
 
-import obrak.Obra;
+import obrak.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class Liburutegia {
     private final String ALE_FITXATEGIEN_IZENA = "./src/aleak.txt";
@@ -14,7 +11,8 @@ public class Liburutegia {
 
     private int azkenErregistroZenbakia;
 
-    ArrayList<Obra> katalogoa = new ArrayList<>();
+    private ArrayList<Obra> katalogoa = new ArrayList<>();
+    private ArrayList<Obra> maileguZerrenda = new ArrayList<>();
     private static Liburutegia instantzia = null;
 
     /**
@@ -76,7 +74,7 @@ public class Liburutegia {
     /**
      * Obrak kargatzen ditu aleak.txt fitxategitik eta ordenan gordeko ditu bere erregistro zenbakiaren arabera
      */
-    public void kargatuKatalogoaFitxategitik() {
+    public void kargatuKatalogoaEtaMaileguakFitxategitik() {
 
         System.out.println("Aleak kargatzen ari...");
 
@@ -84,9 +82,35 @@ public class Liburutegia {
             String lerroa;
             azkenErregistroZenbakia = 0;
             while (scanner.hasNextLine()) {
-                lerroa = scanner.nextLine();
-                String[] lerroOsagaiak = lerroa.split(" ");
-                txertatuOrdenean(new Obra(Integer.parseInt(lerroOsagaiak[1]), lerroOsagaiak[2], lerroOsagaiak[3], Boolean.parseBoolean(lerroOsagaiak[4])));
+                lerroa = scanner.nextLine(); //lehenagotik eginda
+                String[] lerroOsagaiak = lerroa.split(" "); //lehenagotik eginda
+                // Lehen eremua kenduta duen arraya lortu
+                String[] lerroOsagaiakKenBat = Arrays.copyOfRange(lerroOsagaiak, 1, lerroOsagaiak.length);
+                Obra alea;//zein obra mota den jakiteko string konparaketa
+
+                //TODO
+                switch (lerroOsagaiak[0]) {
+                    case "LIBURU":
+                        txertatuOrdenean(new Liburu());
+                        break;
+                    case "ALDIZKARI":
+                        txertatuOrdenean(new Aldizkari());
+                        break;
+                    case "DVD":
+                        txertatuOrdenean(new DVD());
+                        break;
+                    case "ENTZIKLOPEDIA":
+                        txertatuOrdenean(new Entziklopedia());
+                        break;
+                    case "MUSIKACD":
+                        txertatuOrdenean(new MusikaCD());
+                        break;
+                    case "TESTU":
+                        txertatuOrdenean(new Testu());
+                        break;
+                    default:
+                        throw new Exception("Obra mota ezezaguna: " + lerroOsagaiak[0]);
+                }
             }
 
             azkenErregistroZenbakia = katalogoa.get(katalogoa.size() - 1).getErregistroZenbakia();
@@ -281,6 +305,13 @@ public class Liburutegia {
         }
     }
 
+    /**
+     * @return Gaurko data
+     */
+    public Date maileguenData() {
+        return new Date();
+    }
+
 
     /**
      * @return Itzulketen data
@@ -289,16 +320,36 @@ public class Liburutegia {
         Calendar egutegia = Calendar.getInstance();
         egutegia.setTime(new Date()); //gaurko eguna
         egutegia.add(Calendar.DATE, 12); //12 egun maileguan
+
         return egutegia.getTime();
     }
 
-
     /**
-     * @return Data
+     * @return Maileguan dauden obrak
      */
-    public Date maileguenData() {
-        return new Date();
+    public int zenbatMailegu() {
+        return maileguZerrenda.size();
     }
 
+    public ArrayList<ArrayList<String>> katalogokoAleenMatrizea() {
+        ArrayList<ArrayList<String>> obraBerria = new ArrayList<>();
+
+        for (Obra obra : katalogoa) {
+            obraBerria.add(obra.ezaugarrienLista());
+        }
+
+        return obraBerria;
+    }
+
+    public ArrayList<ArrayList<String>> mailegagarrienMatrizea() {
+
+        ArrayList<ArrayList<String>> matrizea = new ArrayList<>();
+
+        for (int i = 0; i < maileguZerrenda.size(); i++) {
+            matrizea.add(katalogoa.get(i).maileguEzaugarrienLista());
+        }
+
+        return matrizea;
+    }
 
 }

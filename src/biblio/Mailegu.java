@@ -107,14 +107,13 @@ public class Mailegu {
 
     public void maileguEzaugarrienLista(ArrayList<String> obra) {
 
-        for (int i = 0; i < obra.size() - 1; i++) {
-            if () {
-
-            }
-        }
+//        for (int i = 0; i < obra.size() - 1; i++) {
+//            if () {
+//
+//            }
+//        }
 
         ArrayList<String> maileguObrak = new ArrayList<>();
-
 
     }
 }
