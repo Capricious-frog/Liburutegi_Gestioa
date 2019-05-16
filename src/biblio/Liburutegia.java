@@ -229,11 +229,12 @@ public class Liburutegia {
         System.out.println("=========================================================");
     }
 
-
-    /**
-     * maileguak.txt fitxategian maileguan dauden katalogoko obren informazioa idazten du,
-     * Obra klaseko idatziFitxategian metodoaz baliatuz.
-     */
+    /*
+        /**
+         * maileguak.txt fitxategian maileguan dauden katalogoko obren informazioa idazten du,
+         * Obra klaseko idatziFitxategian metodoaz baliatuz.
+         */
+    /*
     public void maileguenTxostenaSortu() {
         System.out.println("Maileguen txostena sortzen...");
 
@@ -267,7 +268,7 @@ public class Liburutegia {
             System.err.println();
             e.printStackTrace();
         }
-    }
+    }*/
 
 
     /**
@@ -278,6 +279,7 @@ public class Liburutegia {
     public int getZenbatObra() {
         return katalogoa.size();
     }
+
 
     /**
      * aleak.txt fitxategian iraultzen du katalogoa.
@@ -331,6 +333,11 @@ public class Liburutegia {
         return maileguZerrenda.size();
     }
 
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<ArrayList<String>> katalogokoAleenMatrizea() {
         ArrayList<ArrayList<String>> obraBerria = new ArrayList<>();
 
@@ -341,6 +348,11 @@ public class Liburutegia {
         return obraBerria;
     }
 
+
+    /**
+     *
+     * @return
+     */
     public ArrayList<ArrayList<String>> mailegagarrienMatrizea() {
 
         ArrayList<ArrayList<String>> matrizea = new ArrayList<>();

@@ -1,7 +1,5 @@
 package biblio;
 
-import obrak.IMailegagarri;
-
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -105,15 +103,23 @@ public class Mailegu {
         this.itzultzeData = itzultzeData;
     }
 
-    public void maileguEzaugarrienLista(ArrayList<String> obra) {
 
-//        for (int i = 0; i < obra.size() - 1; i++) {
-//            if () {
-//
-//            }
-//        }
+    /**
+     *
+     * @param obra
+     * @return
+     */
+    public ArrayList<String> maileguEzaugarrienLista(ArrayList<String> obra) {
 
         ArrayList<String> maileguObrak = new ArrayList<>();
+
+        for (int i = 0; i < obra.size(); i++) {
+            if () {
+
+            }
+        }
+
+        return maileguObrak;
 
     }
 }
