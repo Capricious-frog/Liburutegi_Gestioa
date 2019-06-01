@@ -12,7 +12,7 @@ public class Nagusia {
     public static void main(String[] args) {
 
         Liburutegia lib = Liburutegia.getInstance();
-        lib.kargatuKatalogoaFitxategitik(); //kargatu katalogoa aplikazioa abiatzean
+        lib.kargatuKatalogoaEtaMaileguakFitxategitik(); //kargatu katalogoa aplikazioa abiatzean
 
         LeihoNagusi leihoNagusia = new LeihoNagusi();
         leihoNagusia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -1,5 +1,7 @@
 package biblio;
 
+import obrak.Obra;
+
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ public class Mailegu {
      * @param maileguData        Mailegu data
      * @param itzultzeData       Itzultze data
      */
-    public Mailegu(int erregistroZenbakia, String bazkideIzena, Date maileguData, Date itzultzeData) {
+    Mailegu(int erregistroZenbakia, String bazkideIzena, Date maileguData, Date itzultzeData) {
 
     }
 
@@ -41,7 +43,7 @@ public class Mailegu {
      *
      * @return Erregistro zenbakia
      */
-    public int getErregistroZenbakia() {
+    int getErregistroZenbakia() {
         return erregistroZenbakia;
     }
 
@@ -104,22 +106,17 @@ public class Mailegu {
     }
 
 
-    /**
-     *
-     * @param obra
-     * @return
-     */
-    public ArrayList<String> maileguEzaugarrienLista(ArrayList<String> obra) {
-
-        ArrayList<String> maileguObrak = new ArrayList<>();
-
-        for (int i = 0; i < obra.size(); i++) {
-            if () {
-
-            }
-        }
-
-        return maileguObrak;
-
+    ArrayList<String> maileguEzaugarriakGehituta(ArrayList<String> args) {
+        args.set(4, bazkideIzena);
+        SimpleDateFormat dF = new SimpleDateFormat("yyyy-MM-dd");
+        if (maileguData != null)
+            args.set(5, dF.format(maileguData));
+        else
+            args.set(5, "");
+        if (itzultzeData != null)
+            args.set(6, dF.format(itzultzeData));
+        else
+            args.set(6, "");
+        return args;
     }
 }

@@ -1,11 +1,11 @@
 package biblio;
 
 public class ErregZenbEzezaguna extends Throwable {
-    public ErregZenbEzezaguna() {
-
+    ErregZenbEzezaguna() {
+        super();
     }
 
-    public ErregZenbEzezaguna(String err) {
+    ErregZenbEzezaguna(String err) {
         System.err.println(err + " erregistro zenbakia duen obra ez da existitzen.");
     }
 }

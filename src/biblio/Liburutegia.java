@@ -3,6 +3,7 @@ package biblio;
 import obrak.*;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Liburutegia {
@@ -12,7 +13,7 @@ public class Liburutegia {
     private int azkenErregistroZenbakia;
 
     private ArrayList<Obra> katalogoa = new ArrayList<>();
-    private ArrayList<Obra> maileguZerrenda = new ArrayList<>();
+    private ArrayList<Mailegu> maileguZerrenda = new ArrayList<Mailegu>();
     private static Liburutegia instantzia = null;
 
     /**
@@ -88,25 +89,31 @@ public class Liburutegia {
                 String[] lerroOsagaiakKenBat = Arrays.copyOfRange(lerroOsagaiak, 1, lerroOsagaiak.length);
                 Obra alea;//zein obra mota den jakiteko string konparaketa
 
-                //TODO
+
                 switch (lerroOsagaiak[0]) {
                     case "LIBURU":
-                        txertatuOrdenean(new Liburu());
+                        txertatuOrdenean(new Liburu(lerroOsagaiakKenBat));
+                        if (Boolean.parseBoolean(lerroOsagaiakKenBat[6])) {
+                            maileguZerrenda.add(new Mailegu(Integer.parseInt(lerroOsagaiakKenBat[0]), lerroOsagaiakKenBat[7], new SimpleDateFormat("yyyy-MM-dd").parse(lerroOsagaiakKenBat[8]), new SimpleDateFormat("yyyy-MM-dd").parse(lerroOsagaiakKenBat[9])));
+                        }
                         break;
                     case "ALDIZKARI":
-                        txertatuOrdenean(new Aldizkari());
+                        txertatuOrdenean(new Aldizkari(lerroOsagaiakKenBat));
                         break;
                     case "DVD":
-                        txertatuOrdenean(new DVD());
+                        txertatuOrdenean(new DVD(lerroOsagaiakKenBat));
+                        if (Boolean.parseBoolean(lerroOsagaiakKenBat[5])) {
+                            maileguZerrenda.add(new Mailegu(Integer.parseInt(lerroOsagaiakKenBat[0]), lerroOsagaiakKenBat[6], new SimpleDateFormat("yyyy-MM-dd").parse(lerroOsagaiakKenBat[7]), new SimpleDateFormat("yyyy-MM-dd").parse(lerroOsagaiakKenBat[8])));
+                        }
                         break;
                     case "ENTZIKLOPEDIA":
-                        txertatuOrdenean(new Entziklopedia());
+                        txertatuOrdenean(new Entziklopedia(lerroOsagaiakKenBat));
                         break;
                     case "MUSIKACD":
-                        txertatuOrdenean(new MusikaCD());
-                        break;
-                    case "TESTU":
-                        txertatuOrdenean(new Testu());
+                        txertatuOrdenean(new MusikaCD(lerroOsagaiakKenBat));
+                        if (Boolean.parseBoolean(lerroOsagaiakKenBat[5])) {
+                            maileguZerrenda.add(new Mailegu(Integer.parseInt(lerroOsagaiakKenBat[0]), lerroOsagaiakKenBat[6], new SimpleDateFormat("yyyy-MM-dd").parse(lerroOsagaiakKenBat[7]), new SimpleDateFormat("yyyy-MM-dd").parse(lerroOsagaiakKenBat[8])));
+                        }
                         break;
                     default:
                         throw new Exception("Obra mota ezezaguna: " + lerroOsagaiak[0]);
@@ -158,6 +165,19 @@ public class Liburutegia {
 
     }
 
+    /**
+     * @param erregZenb
+     * @return
+     * @throws ErregZenbEzezaguna
+     */
+    public Mailegu erregZenbDuenMailegua(int erregZenb) throws ErregZenbEzezaguna {
+        for (Mailegu mailegu : this.maileguZerrenda) {
+            if ((mailegu.getErregistroZenbakia() == erregZenb))
+                return mailegu;
+        }
+        throw new ErregZenbEzezaguna();
+    }
+
 
     /**
      * Obra bat emanik, katalogoan gehitzen du
@@ -198,11 +218,14 @@ public class Liburutegia {
      *
      * @param erregZenb      Erregistro zenbakia
      * @param izena
-     * @param date
-     * @param itzulketenData
+     * @param date Gaurko data
+     * @param itzulketenData Itzulketa data
      */
     public void mailegatuObra(int erregZenb, String izena, Date date, Date itzulketenData) throws ErregZenbEzezaguna {
-        erregZenbDuenAlea(erregZenb).maileguanEman();
+        if (erregZenbDuenAlea(erregZenb) instanceof IMailegagarri && !((IMailegagarri) erregZenbDuenAlea(erregZenb)).isMaileguanDa()) {
+            maileguZerrenda.set(maileguZerrenda.indexOf(erregZenbDuenMailegua(erregZenb)), new Mailegu(erregZenb, izena, date, itzulketenData));
+            ((IMailegagarri) erregZenbDuenAlea(erregZenb)).maileguanEman();
+        }
     }
 
 
@@ -213,7 +236,10 @@ public class Liburutegia {
      * @param erregZenb Erregistro zenbakia
      */
     public void itzuliObra(int erregZenb) throws ErregZenbEzezaguna {
-        erregZenbDuenAlea(erregZenb).maileguaKendu();
+        if (erregZenbDuenAlea(erregZenb) instanceof IMailegagarri && ((IMailegagarri) erregZenbDuenAlea(erregZenb)).isMaileguanDa()) {
+            maileguZerrenda.set(maileguZerrenda.indexOf(erregZenbDuenMailegua(erregZenb)), new Mailegu(erregZenb, "", null, null));
+            ((IMailegagarri) erregZenbDuenAlea(erregZenb)).maileguaKendu();
+        }
     }
 
     /**
@@ -335,8 +361,7 @@ public class Liburutegia {
 
 
     /**
-     *
-     * @return
+     * @return Katalogoen aleen matrizea
      */
     public ArrayList<ArrayList<String>> katalogokoAleenMatrizea() {
         ArrayList<ArrayList<String>> obraBerria = new ArrayList<>();
@@ -350,17 +375,19 @@ public class Liburutegia {
 
 
     /**
-     *
-     * @return
+     * @return Mailegagarrien matrizea
      */
     public ArrayList<ArrayList<String>> mailegagarrienMatrizea() {
+        ArrayList<ArrayList<String>> matrizea = new ArrayList<ArrayList<String>>();
 
-        ArrayList<ArrayList<String>> matrizea = new ArrayList<>();
-
-        for (int i = 0; i < maileguZerrenda.size(); i++) {
-            matrizea.add(katalogoa.get(i).maileguEzaugarrienLista());
+        System.out.println("Maileguen txostena sortzen ari...");
+        try {
+            for (Mailegu mailegu : maileguZerrenda) {
+                matrizea.add(mailegu.maileguEzaugarriakGehituta(((IMailegagarri) erregZenbDuenAlea(mailegu.getErregistroZenbakia())).maileguEzaugarrienLista()));
+            }
+        } catch (ErregZenbEzezaguna e) {
+            e.printStackTrace();
         }
-
         return matrizea;
     }
 
